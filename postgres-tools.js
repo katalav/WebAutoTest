@@ -23,12 +23,20 @@ dotenv.config();
 // Read environment variables 
 const currentEnv = process.env
 
-// Connection settings
-const connection = {host: currentEnv.HOST,
-    port: currentEnv.DB_PORT,
-    database: currentEnv.DB,
-    user: currentEnv.APP_USER,
-    password: currentEnv.APP_PASSWORD
+// Read environment variables from .env
+const HOST = process.env.POSTGRESQL_HOST
+const PORT = process.env.POSTGRESQL_USER_PORT
+const DATABASE= process.env.POSTGRESQL_DB
+const USER = process.env.POSTGRESQL_USER
+const PASSWORD = process.env.POSTGRESQL_USER_PASSWORD
+
+// Database connection settings
+const connection = {
+    host: HOST,
+    port: PORT,
+    database: DATABASE,
+    user: USER,
+    password: PASSWORD
 };
 
 // Create pool object for transactions
@@ -228,4 +236,4 @@ const convertToDateTimeObject = (timestamp) => {
 // ----------------
 
 // TODO: Export all functions and the pool itself. Jest needs the pool to run tests
-module.exports = {pool, insertQuery, selectQuery, getFreeVehicles, getVehiclesInUse, getVehicleDetails, getDiary, getTaxDiary, getVehicleDiary, runQueryWithValues, getLocationByReg, getVehicleData,  convertToDateTimeObject, getWebUserData};
+module.exports = {pool, insertQuery, selectQuery, getFreeVehicles, getVehiclesInUse, getVehicleDetails, getDiary, getTaxDiary, getVehicleDiary, runQueryWithValues, getLocationByReg, getVehicleData,  convertToDateTimeObject, getWebUserData, currentEnv};

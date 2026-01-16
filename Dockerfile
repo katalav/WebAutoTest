@@ -11,7 +11,8 @@ WORKDIR /opt/WebAutoTest
 # Copy package.json annd package-lock.json files
 COPY --chown=node:node package*.json ./
 
-
+# Change to node user 
+USER node
 # Install application dependencies
 RUN npm install
 
@@ -22,4 +23,4 @@ COPY --chown=node:node . .
 EXPOSE 8080
 
 # Start the application 
-CMD [ "nodemon" , "app.js" ]
+CMD [ "node" , "app.js" ]
